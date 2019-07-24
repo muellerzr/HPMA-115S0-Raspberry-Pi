@@ -26,11 +26,9 @@ try:
         while 1:
             two = []
             ten = []
-            for i in range(10):
-                if (hpma115S0.readParticleMeasurement()):
-                    
-                    print("PM2.5    = %d ug/m3" % (hpma115S0._pm2_5))
-                    print("PM10     = %d ug/m3" % (hpma115S0._pm10))
+
+            if (hpma115S0.readParticleMeasurement()):
+                for i in range(10):
                     two.append(hpma115S0._pm2_5)
                     ten.append(hpma115S0._pm10)
                     time.sleep(0.1)
@@ -39,7 +37,6 @@ try:
             result_writer.writerow([datetime.now().date(), datetime.now().time().replace(microsecond=0), val1, val2])
             print('PM2.5:{val1}')
             print('PM10:{val2}')
-            time.sleep(1)
 
 except KeyboardInterrupt:
     print(" Interrupt detected - Exiting.") 
