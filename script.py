@@ -5,7 +5,6 @@
 # Tamas Halbrucker, 2018
 
 from HPMA115S0_Python.HPMA115S0 import *
-#from Adafruit_Python_BME280.Adafruit_BME280 import *
 import time
 import csv
 from datetime import datetime
@@ -20,23 +19,22 @@ try:
         result_writer = csv.writer(results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         result_writer.writerow(['Date', 'Time', 'PM2.5 (ug/m3)', 'PM10 (ug/m3)'])
 
-        hpma115S0.init()
-        hpma115S0.startParticleMeasurement()
+        hpma115S0.init() # Initialize HPMA
+        hpma115S0.startParticleMeasurement() # Starts measurement
 
         while 1:
-            two = []
-            ten = []
-
-            if (hpma115S0.readParticleMeasurement()):
-                for i in range(10):
-                    two.append(hpma115S0._pm2_5)
-                    ten.append(hpma115S0._pm10)
-                    time.sleep(0.1)
-            val1 = sum(two)/len(two)
-            val2 = sum(ten)/len(ten)
+            two = [] # PM 2.5 Array
+            ten = [] # PM 10 Array
+            for i in range(60): # One every 60 seconds
+                if (hpma115S0.readParticleMeasurement()):
+                    
+                    two.append(hpma115S0._pm2_5) # PM 2.5 Measurement
+                    ten.append(hpma115S0._pm10) # PM 10 Measurement
+                    time.sleep(1) # Sleep 1 second
+            val1 = sum(two)/len(two) # Take the average PM 2.5 over that minute
+            val2 = sum(ten)/len(ten) # Take the average PM 10 over that minute
             result_writer.writerow([datetime.now().date(), datetime.now().time().replace(microsecond=0), val1, val2])
-            print('PM2.5:{val1}')
-            print('PM10:{val2}')
+            # Write to csv
 
 except KeyboardInterrupt:
     print(" Interrupt detected - Exiting.") 
