@@ -25,11 +25,13 @@ try:
         while 1:
             two = [] # PM 2.5 Array
             ten = [] # PM 10 Array
-            for i in range(60): # One every 60 seconds
+            i = 0
+            while i < 60: # One every 60 seconds
                 if (hpma115S0.readParticleMeasurement()):
-                    
+                    print(hpma115S0._pm2_5)
                     two.append(hpma115S0._pm2_5) # PM 2.5 Measurement
                     ten.append(hpma115S0._pm10) # PM 10 Measurement
+                    i += 1
                     time.sleep(1) # Sleep 1 second
             val1 = sum(two)/len(two) # Take the average PM 2.5 over that minute
             val2 = sum(ten)/len(ten) # Take the average PM 10 over that minute

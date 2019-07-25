@@ -22,7 +22,7 @@ class HPMA115S0:
         self._serial.baudrate = 9600
         self._serial.stopbits = serial.STOPBITS_ONE
         self._serial.bytesize = serial.EIGHTBITS
-        self._serial.timeout = 1
+        self._serial.timeout = 10
         self._serial.open()
 
     def init(self):
