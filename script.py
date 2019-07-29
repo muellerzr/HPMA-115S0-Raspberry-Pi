@@ -7,6 +7,7 @@
 from HPMA115S0_Python.HPMA115S0 import *
 import time
 import csv
+import os.path
 from datetime import datetime
 
 try:
@@ -15,10 +16,13 @@ try:
     #sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
 
     hpma115S0 = HPMA115S0("/dev/ttyS0")
+    file_exists = os.path.isfile('results.csv')
     with open('results.csv', mode='a') as results:
-        result_writer = csv.writer(results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        result_writer.writerow(['Date', 'Time', 'PM2.5 (ug/m3)', 'PM10 (ug/m3)'])
-
+        headers = ['Date', 'Time', 'PM2.5 (ug/m3)', 'PM10 (ug/m3)']
+        result_writer = csv.DictWriter(results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, fieldnames=headers)
+        if not file_exists:
+            result_writer.write_header()
+            
         hpma115S0.init() # Initialize HPMA
         hpma115S0.startParticleMeasurement() # Starts measurement
 
