@@ -15,7 +15,7 @@ try:
     #sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
 
     hpma115S0 = HPMA115S0("/dev/ttyS0")
-    with open('results.csv', mode='w') as results:
+    with open('results.csv', mode='a') as results:
         result_writer = csv.writer(results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         result_writer.writerow(['Date', 'Time', 'PM2.5 (ug/m3)', 'PM10 (ug/m3)'])
 
@@ -36,6 +36,7 @@ try:
                     time.sleep(1) # Sleep 1 second
             val1 = sum(two)/len(two) # Take the average PM 2.5 over that minute
             val2 = sum(ten)/len(ten) # Take the average PM 10 over that minute
+            print(val1, val2)
             result_writer.writerow([datetime.now().date(), datetime.now().time().replace(microsecond=0), val1, val2])
             # Write to csv
             print('Wrote to csv')
