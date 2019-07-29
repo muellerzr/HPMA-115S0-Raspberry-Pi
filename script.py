@@ -41,7 +41,8 @@ try:
             val1 = sum(two)/len(two) # Take the average PM 2.5 over that minute
             val2 = sum(ten)/len(ten) # Take the average PM 10 over that minute
             print(val1, val2)
-            result_writer.writerow([datetime.now().date(), datetime.now().time().replace(microsecond=0), val1, val2])
+            result_writer.writerow([{'Date': datetime.now().date(), 'Time' : datetime.now().time().replace(microsecond=0), 
+                                     'PM2.5 (ug/m3)': val1, 'PM10 (ug/m3)' : val2])
             # Write to csv
             print('Wrote to csv')
 except KeyboardInterrupt:
