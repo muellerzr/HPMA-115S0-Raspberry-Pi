@@ -14,4 +14,8 @@ This is a repository for using HPMA-115S0 sensors on a Raspberry Pi
 
 5. `chmod +x run.sh`
 
-6. `./run.sh`
+6. Run `screen` and detach with `CTRL + A + D
+
+7. `./run.sh`
+
+8. Safely exit SSH
