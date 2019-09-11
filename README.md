@@ -12,4 +12,6 @@ This is a repository for using HPMA-115S0 sensors on a Raspberry Pi
 
 4. Touch __init__.py for HPMA115S0_Python
 
-5. `python3 script.py`
+5. `chmod +x run.sh`
+
+6. `./run.sh`
