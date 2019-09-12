@@ -27,5 +27,5 @@ ip -4 addr show | grep global
 
 Look for 172
 
-nmap -sn 172 ip except end eg: 172.20.10.0/24
+In ZenMap: nmap -sn 172 ip except end eg: 172.20.10.0/24
 Ssh pi@172..... until it goes in
