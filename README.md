@@ -19,3 +19,13 @@ This is a repository for using HPMA-115S0 sensors on a Raspberry Pi
 7. `./run.sh`
 
 8. Safely exit SSH
+
+# To find IP:
+
+On terminal:
+ip -4 addr show | grep global
+
+Look for 172
+
+nmap -sn 172 ip except end eg: 172.20.10.0/24
+Ssh pi@172..... until it goes in
