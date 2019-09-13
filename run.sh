@@ -2,5 +2,5 @@
 
 
 while true; do
-    ./script.py
+    python3 script.py
 done
