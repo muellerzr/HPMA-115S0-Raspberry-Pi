@@ -18,7 +18,7 @@ This is a repository for using HPMA-115S0 sensors on a Raspberry Pi
 
 7. `sudo ./run.sh`
 
-8. Detach with `CTRL + A + D safely exit SSH
+8. Detach with `CTRL + A + D` safely exit SSH
 
 # To find IP:
 
